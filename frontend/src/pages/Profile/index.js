@@ -11,6 +11,7 @@ import logoImg from '../../assets/logo.svg';
 export default function Profile() {
   const [incidents, setIncidents] = useState([]);
 
+  const history = useHistory();
   const ongName = localStorage.getItem('ongName');
   const ongId = localStorage.getItem('ongId');
 
@@ -36,8 +37,11 @@ export default function Profile() {
     }
   }
 
-  // const history = useHistory();
+  function handleLogout() {
+    localStorage.clear();
 
+    history.push('/');
+  }
 
   return(
     <>
@@ -47,7 +51,7 @@ export default function Profile() {
           <span>Bem vinda, {ongName}</span>
 
           <Link className="button" to="/incident/new">Cadastrar novo caso</Link>
-          <button type="button">
+          <button onClick={handleLogout} type="button">
             <FiPower size={18} color="#e02041" />
           </button>
         </header>
